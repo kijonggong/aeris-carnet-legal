@@ -29,5 +29,5 @@ In no event shall the developers of Aéris Carnet be liable for any indirect, in
 
 ## 7. Governing Law & Contact
 These Terms shall be governed by and construed in accordance with the laws of the Republic of Korea, without regard to its conflict of law principles. For support, legal inquiries, or feedback, please contact us at:
-- **Developer Email**: `contact@aeriscarnet.com` (or project maintainer)
+- **Developer Email**: `kijong1002@gmail.com`
 - **GitHub Issues**: https://github.com/kijonggong/aeris-carnet-legal/issues

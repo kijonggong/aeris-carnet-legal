@@ -47,5 +47,5 @@ We may update our Privacy Policy from time to time. Any changes will be posted w
 
 ## 9. Contact Us
 If you have questions, feedback, or concerns regarding our Privacy Policy or data handling practices, please contact us at:
-- **Developer Email**: `contact@aeriscarnet.com` (or project maintainer)
+- **Developer Email**: `kijong1002@gmail.com`
 - **GitHub Issues**: https://github.com/kijonggong/aeris-carnet-legal/issues

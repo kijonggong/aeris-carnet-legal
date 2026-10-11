@@ -9,7 +9,7 @@ Aéris Carnet ("we", "our", or "the app") is committed to protecting your privac
 ## 1. Offline-First Architecture & Data Ownership
 Aéris Carnet is engineered as an **offline-first, client-side personal flight logbook**.
 - All your personal flight records, ticket information, notes, and passport stamps are stored **locally on your device** in a private SQLite/Room database.
-- We do not operate external application servers, databases, or user accounts. We do not sell or monetize your flight history. When you voluntarily use the real-time flight lookup feature, only the queried flight designator and date are sent to the aviation schedule API; your stored logbook history is never uploaded or transmitted.
+- We do not operate user accounts or a database of your flight history, and we do not sell or monetize it. The only server we operate is a small proxy for the real-time flight lookup feature (not available in the current version). When you voluntarily use the real-time flight lookup feature, only the queried flight designator and date are sent to the aviation schedule API; your stored logbook history is never uploaded or transmitted.
 
 ## 2. Permissions Used by the App
 - **CAMERA (`android.permission.CAMERA`)**: Used exclusively on-device when you choose to scan a boarding pass via Google ML Kit Barcode Scanning. The photo you take is processed on your device; a copy is kept only if you attach it to a flight as a ticket photo. Nothing is transmitted to any server.
@@ -31,6 +31,8 @@ If you have Android Auto-Backup or Google One cloud backup enabled on your devic
 The app interacts with the following external third-party services strictly when online features are triggered:
 - **Google Play Services**: For In-App Billing processing, ML Kit Document Scanning, and Barcode Parsing.
 - **AviationStack (Optional Search)**: When you manually search a flight number/date, the query parameters are sent to AviationStack's public aviation API to fetch schedule details.
+- **Google ML Kit (barcode and document scanning)**: Scanning runs on your device and the images are not sent to Google. Like all ML Kit apps, the SDK sends Google technical telemetry (per-installation identifier, device and app information, API configuration, latency and error codes) over HTTPS. See https://developers.google.com/ml-kit/android-data-disclosure.
+- **Google Play Integrity**: When the app starts, it prepares Google Play Integrity, which lets Google verify that the app and device are genuine (app metadata, license status, device attestation). Google states this data is not transferred to third parties. See https://developer.android.com/google/play/integrity/terms.
 - **Public Airline & Aircraft Image CDNs**: Public airline logos and aircraft manufacturer emblems are retrieved on-demand from public content delivery networks (`pics.avs.io`, `images.kiwi.com`, and `upload.wikimedia.org`) for local caching. These requests only transmit standard HTTP headers and your IP address to retrieve image assets.
 
 ## 6. Children's Privacy
@@ -39,7 +41,7 @@ Aéris Carnet does not knowingly collect or solicit personal information from ch
 ## 7. Data Retention and Deletion
 Aéris Carnet puts you in complete control of your data:
 - **Instant In-App Deletion**: You can permanently delete any individual flight record, scanned barcode, or ticket photo at any time directly within the app (tap on any flight card or ticket detail and select Delete).
-- **Complete Local Purge**: Because all personal data is stored strictly on your local device in private application sandboxes, clearing the application data/storage via your Android system settings (`Settings -> Apps -> Aéris Carnet -> Storage -> Clear Data`) or uninstalling the app permanently and irreversibly purges 100% of your flight logs, ticket images, and cached assets.
+- **Complete Local Purge**: Because all personal data is stored strictly on your local device in private application sandboxes, clearing the application data/storage via your Android system settings (`Settings -> Apps -> Aéris Carnet -> Storage -> Clear Data`) or uninstalling the app permanently purges the flight logs, ticket images, and cached assets stored by the app on that device. It does not remove files you exported or shared, existing Android cloud backups (see below), or the technical telemetry already sent by the Google SDKs listed in section 5.
 - **Cloud Backup Deletion**: If you have enabled Android Auto-Backup or Google One cloud backup, you can delete your stored app backup at any time through your Google Drive app backup management settings.
 
 ## 8. Changes to This Privacy Policy

@@ -13,11 +13,12 @@ Aéris Carnet is engineered as an **offline-first, client-side personal flight l
 
 ## 2. Permissions Used by the App
 - **CAMERA (`android.permission.CAMERA`)**: Used exclusively on-device when you choose to scan a boarding pass via Google ML Kit Barcode Scanning. The photo you take is processed on your device; a copy is kept only if you attach it to a flight as a ticket photo. Nothing is transmitted to any server.
-- **INTERNET (`android.permission.INTERNET`)**: Used only for:
-  1. Retrieving live flight schedule details (via public aviation APIs) when you search a flight designator (not available in the current version).
-  2. Downloading airline brand logos and aircraft silhouettes for offline caching.
-  3. Google Play Billing purchase verification and status reconciliation (not used in the current version).
-- **BILLING (`com.android.vending.BILLING`)**: Declared for Google Play's official billing system. The current version sells nothing and does not start a purchase.
+- **INTERNET (`android.permission.INTERNET`)**: Used for:
+  1. Downloading airline brand logos and aircraft manufacturer emblems for offline caching.
+  2. The Google SDK traffic described in section 5: Play Integrity preparation when the app starts, ML Kit technical telemetry, and scanner resources that Google Play services may download.
+  3. Retrieving live flight schedule details (via public aviation APIs) when you search a flight designator (not available in the current version).
+  4. Google Play Billing purchase verification and status reconciliation (not used in the current version).
+- **BILLING (`com.android.vending.BILLING`)**: Not requested by the current free version. Versions that offer purchases declare it for Google Play's official billing system.
 
 ## 3. In-App Purchases & Subscriptions
 All transactions are handled directly and securely by Google Play. We do not collect, process, or store your credit card numbers, billing addresses, or payment credentials. Your entitlement status is verified on-device via Google Play Billing Client and secured in encrypted local storage (`EncryptedSharedPreferences`).
@@ -28,7 +29,7 @@ If you have Android Auto-Backup or Google One cloud backup enabled on your devic
 - Pro entitlement credentials and device Keystore keys are strictly excluded from backups (`data_extraction_rules.xml`) to safeguard security and license integrity.
 
 ## 5. Third-Party Services & Network Requests
-The app interacts with the following external third-party services strictly when online features are triggered:
+The app contacts the following external services. Some requests happen automatically (Play Integrity preparation at startup, ML Kit telemetry, logo downloads when a screen shows an airline); others only when you use a feature:
 - **Google Play Services**: For In-App Billing processing, ML Kit Document Scanning, and Barcode Parsing.
 - **AviationStack (Optional Search)**: When you manually search a flight number/date, the query parameters are sent to AviationStack's public aviation API to fetch schedule details.
 - **Google ML Kit (barcode and document scanning)**: Scanning runs on your device and the images are not sent to Google. Like all ML Kit apps, the SDK sends Google technical telemetry (per-installation identifier, device and app information, API configuration, latency and error codes) over HTTPS. See https://developers.google.com/ml-kit/android-data-disclosure.
